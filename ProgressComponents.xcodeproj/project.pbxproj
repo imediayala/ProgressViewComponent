@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		C42407192686639B00DCACFC /* ProgressComponentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42407182686639B00DCACFC /* ProgressComponentsApp.swift */; };
-		C424071B2686639B00DCACFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424071A2686639B00DCACFC /* ContentView.swift */; };
 		C424071D2686639C00DCACFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C424071C2686639C00DCACFC /* Assets.xcassets */; };
 		C42407202686639C00DCACFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C424071F2686639C00DCACFC /* Preview Assets.xcassets */; };
+		C42407282686666D00DCACFC /* CustomProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42407272686666D00DCACFC /* CustomProgressViewStyle.swift */; };
+		C46E6BB0268862810045F819 /* ProgressViewSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E6BAF268862810045F819 /* ProgressViewSampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C42407152686639B00DCACFC /* ProgressComponents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressComponents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42407182686639B00DCACFC /* ProgressComponentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressComponentsApp.swift; sourceTree = "<group>"; };
-		C424071A2686639B00DCACFC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C424071C2686639C00DCACFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C424071F2686639C00DCACFC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C42407212686639C00DCACFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C42407272686666D00DCACFC /* CustomProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressViewStyle.swift; sourceTree = "<group>"; };
+		C46E6BAF268862810045F819 /* ProgressViewSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewSampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				C42407182686639B00DCACFC /* ProgressComponentsApp.swift */,
-				C424071A2686639B00DCACFC /* ContentView.swift */,
+				C42407272686666D00DCACFC /* CustomProgressViewStyle.swift */,
+				C46E6BAF268862810045F819 /* ProgressViewSampleView.swift */,
 				C424071C2686639C00DCACFC /* Assets.xcassets */,
 				C42407212686639C00DCACFC /* Info.plist */,
 				C424071E2686639C00DCACFC /* Preview Content */,
@@ -138,7 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C424071B2686639B00DCACFC /* ContentView.swift in Sources */,
+				C42407282686666D00DCACFC /* CustomProgressViewStyle.swift in Sources */,
+				C46E6BB0268862810045F819 /* ProgressViewSampleView.swift in Sources */,
 				C42407192686639B00DCACFC /* ProgressComponentsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

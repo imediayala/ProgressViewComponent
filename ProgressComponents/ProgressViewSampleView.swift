@@ -1,5 +1,5 @@
 //
-//  ProgressVieweSampleView.swift
+//  ProgressViewSampleView.swift
 //  ProgressComponents
 //
 //  Created by Daniel Ayala on 27/6/21.
@@ -7,14 +7,63 @@
 
 import SwiftUI
 
-struct ProgressVieweSampleView: View {
+struct ProgressViewSampleView: View {
+    @State private var progress = 0.2
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack() {
+                Group {
+                    ProgressView(value: progress)
+                        .frame(width: 100, height: 100)
+                        .custom(strokeColor: .green, strokeBackgroundColor: .clear, strokeWidth: 10.0)
+                    Spacer(minLength: 20.0)
+                    
+                    
+                    ProgressView(value: progress)
+                        .frame(width: 100, height: 100)
+                        .custom(strokeColor: .orange, strokeBackgroundColor: .gray, strokeWidth: 10.0, animationEffect: .easeIn(duration: 1.5))
+                    
+                    Spacer(minLength: 20.0)
+                    
+                    ProgressView(value: progress)
+                        .frame(width: 100, height: 100)
+                        .custom(strokeColor: .red, strokeBackgroundColor: .clear, strokeWidth: 10.0)
+                        .overlay(ProgressView(value: progress)
+                                    .frame(width: 80, height: 80).custom(strokeColor: .orange, strokeBackgroundColor: .clear, strokeWidth: 10.0))
+                        .overlay(ProgressView(value: progress)
+                                    .frame(width: 60, height: 60).custom(strokeColor: .green, strokeBackgroundColor: .clear, strokeWidth: 10.0))
+                    Spacer(minLength: 20.0)
+                    
+                    ProgressView(value: progress)
+                        .frame(width: 100, height: 100)
+                        .custom(strokeColor: .orange, strokeBackgroundColor: .gray, strokeWidth: 10.0, hasGradient: true)
+                    Spacer(minLength: 20.0)
+                    
+                    
+                }
+                
+                Group {
+                    Button(action: {
+                        progress = 1.0
+                    }, label: {
+                        Text("Animate Progress")
+                    })
+                    Divider()
+                    Button(action: {
+                        progress = 0.2
+                    }, label: {
+                        Text("Reset Progress")
+                    })
+                }
+            }
+            .padding()
+        }
     }
 }
 
-struct ProgressVieweSampleView_Previews: PreviewProvider {
+struct ProgressViewSampleView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressVieweSampleView()
+        ProgressViewSampleView()
     }
 }
