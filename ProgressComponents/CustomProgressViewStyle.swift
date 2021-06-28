@@ -11,8 +11,7 @@ struct CustomProgressViewStyle: View {
     @State private var progress = 0.2
     
     var body: some View {
-        ProgressView(value: progress, total: 1.0)
-            .progressViewStyle(RoundProgressStyle())
+        RoundProgressView(fractionCompleted: $progress)
             .frame(width: 200, height: 200)
             .contentShape(Rectangle())
             .onTapGesture {
@@ -21,7 +20,8 @@ struct CustomProgressViewStyle: View {
     }
 }
 
-struct RoundProgressStyle: ProgressViewStyle {
+struct RoundProgressView: View {
+    @Binding var fractionCompleted: Double
     var strokeColor = Color.blue
     var strokeBackgroundColor = Color.gray
     var strokeWidth: CGFloat = 5.0
@@ -30,29 +30,39 @@ struct RoundProgressStyle: ProgressViewStyle {
     var strokeAngularGradient = AngularGradient(gradient: Gradient(colors: [.red, .orange, .yellow, .green, .blue, .purple]), center: .center)
     var animationEffect: Animation = .easeOut(duration: 1.5)
     
-    
-    func makeBody(configuration: Configuration) -> some View {
-        let fractionCompleted = configuration.fractionCompleted ?? 0
-        
-        return ZStack {
-            Circle()
-                .stroke(strokeBackgroundColor, style: StrokeStyle(lineWidth: CGFloat(strokeWidth)))
-            
-            if hasGradient {
+    var body: some View {
+        GeometryReader { geometry in
+            let height = geometry.size.height
+            let width = geometry.size.width
+            ZStack {
                 Circle()
-                    .trim(from: 0, to: CGFloat(fractionCompleted))
-                    .stroke(strokeAngularGradient, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
-                    .rotationEffect(.degrees(startPoint.rawValue))
-                    .animation(animationEffect)
-            } else {
-                Circle()
-                    .trim(from: 0, to: CGFloat(fractionCompleted))
-                    .stroke(strokeColor, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
-                    .rotationEffect(.degrees(startPoint.rawValue))
-                    .animation(animationEffect)
+                    .stroke(strokeBackgroundColor, style: StrokeStyle(lineWidth: CGFloat(strokeWidth)))
+                    .frame(width: width - strokeWidth, alignment: .center)
+                    .position(x: width/2, y: height/2)
+                
+                if hasGradient {
+                    Circle()
+                        .trim(from: 0, to: CGFloat(fractionCompleted))
+                        .stroke(strokeAngularGradient, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
+                        .frame(width: width - strokeWidth, alignment: .center)
+                        .position(x: width/2, y: height/2)
+                        .rotationEffect(.degrees(startPoint.rawValue))
+                        .animation(animationEffect)
+                } else {
+                    Circle()
+                        .trim(from: 0, to: CGFloat(fractionCompleted))
+                        .stroke(strokeColor, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
+                        .frame(width: width - strokeWidth, alignment: .center)
+                        .position(x: width/2, y: height/2)
+                        .rotationEffect(.degrees(startPoint.rawValue))
+                        .animation(animationEffect)
+                }
             }
         }
+        
     }
+    
+    
 }
 
 internal enum RoundProgressStartPoint: Double {
@@ -61,22 +71,6 @@ internal enum RoundProgressStartPoint: Double {
     case trailing = 0
     case bottom = 90
     
-}
-
-extension View {
-    
-    func custom(strokeColor: Color = .blue, strokeBackgroundColor: Color = .clear, strokeWidth: CGFloat = 5.0, startPoint: RoundProgressStartPoint = .top,  strokeAngularGradient: AngularGradient = AngularGradient(gradient: Gradient(colors: [.red, .orange, .yellow, .green, .blue, .purple]), center: .center), hasGradient: Bool = false, animationEffect: Animation = .easeIn(duration: 1.5)) -> some View {
-        
-        self.progressViewStyle(RoundProgressStyle(strokeColor: strokeColor, strokeBackgroundColor: strokeBackgroundColor, strokeWidth: strokeWidth, startPoint: startPoint, hasGradient: hasGradient, strokeAngularGradient: strokeAngularGradient, animationEffect: animationEffect))
-    }
-}
-
-struct DarkBlueShadowProgressViewStyle: ProgressViewStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        ProgressView(configuration)
-            .shadow(color: Color(red: 0, green: 0, blue: 0.6),
-                    radius: 4.0, x: 1.0, y: 2.0)
-    }
 }
 
 struct CustomProgressViewStyle_Previews: PreviewProvider {
